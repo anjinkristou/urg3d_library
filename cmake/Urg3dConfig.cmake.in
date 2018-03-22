@@ -1,0 +1,14 @@
+# Config module for Urg3d
+#
+# Provides the following variables
+# Urg3d_INCLUDE_DIRS - Directories to include
+# Urg3d_LIBRARIES    - Libraries to link
+# Urg3d_LIBRARY_DIRS - Library directories to search for link libraries
+
+@PACKAGE_INIT@
+
+set_and_check(@PROJECT_NAME@_INCLUDE_DIR  @PACKAGE_CMAKE_INSTALL_INCLUDEDIR@)
+set_and_check(@PROJECT_NAME@_INCLUDE_DIRS @PACKAGE_CMAKE_INSTALL_INCLUDEDIR@)
+set_and_check(@PROJECT_NAME@_LIBRARY_DIRS @PACKAGE_CMAKE_INSTALL_LIBDIR@)
+
+set(Urg3d_LIBRARIES "@PROJECT_NAME@")
