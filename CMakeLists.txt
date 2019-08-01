@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
-project(Urg3d VERSION 1.1.0 DESCRIPTION "URG3D library")
+project(Urg3d 
+    VERSION 1.1.0 
+    DESCRIPTION "URG3D library"
+    LANGUAGES C
+    )
 
 add_library(Urg3d SHARED
     src/urg3d_connection.c
@@ -38,6 +42,11 @@ set_target_properties(Urg3d PROPERTIES SOVERSION 1)
 set_target_properties(Urg3d PROPERTIES PUBLIC_HEADER "${PUBLIC_HEADERS}")
 target_include_directories(Urg3d PRIVATE include)
 target_include_directories(Urg3d PRIVATE src)
+
+if(MSVC)
+	target_link_libraries(Urg3d PRIVATE wsock32 WS2_32)
+	target_link_libraries(Urg3dStatic PRIVATE wsock32 WS2_32)
+endif(MSVC)
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)

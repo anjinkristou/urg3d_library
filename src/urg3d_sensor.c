@@ -440,6 +440,25 @@ void urg3d_low_purge(urg3d_t * const urg)
     urg3d_ring_clear(&cli->rb);
 }
 
+int urg3d_low_has_error(urg3d_t * const urg)
+{
+    int ret = 0;
+
+    if((ret = urg3d_next_receive_ready(urg)) <= 0) {
+        return ret;
+    }
+
+    if(strncmp(&urg->nextHeader[4], "_er", 3) != 0) {
+        return 1;
+    }
+
+    if(strncmp(&urg->nextHeader[4], "ERR", 3) != 0) {
+        return 1;
+    }
+
+    return ret;
+}
+
 static int urg3d_high_blocking_common(urg3d_t *urg, urg3d_vssp_header_t* const header
                                       , char* const data
                                       , const char* const command

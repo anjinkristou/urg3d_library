@@ -219,6 +219,17 @@ extern "C" {
     extern void urg3d_low_purge(urg3d_t * const urg);
 
     /*!
+      \brief check error message presence
+
+      \param[in,out] urg : urg3d session
+
+      \retval 1 error message present
+      \retval 0  no error
+      \retval <0 connection error
+    */
+    extern int urg3d_low_has_error(urg3d_t * const urg);
+
+    /*!
       ==================== 3D-URG High Layer ====================
     */
     typedef enum {
